@@ -179,7 +179,7 @@ resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_public_tf" {
 # @exposes #web_server to Denial of Service with #flooding
 
 # @threat attacker accesses #web via SSH (#sshconnect)
-# @exposes server to attacker with #sshconnect
+# @exposes #web_server to attacker with #sshconnect
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 >>>>>>> 129f42520dc7d428d61397518046897bc096aac6
   ami = "ami-0943382e114f188e8"
@@ -467,7 +467,8 @@ resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_db_tf" {
 
 # @exposes #dbserver to Information Disclosure with #sqlinjection
 
-
+# @threat credentials exposed in plain text (#plain_cred)
+# @exposes #dbserver to information disclosure with credentials not hashed
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
   ami = "ami-0943382e114f188e8"
   instance_type = "t2.micro"

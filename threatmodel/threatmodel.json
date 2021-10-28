@@ -36,7 +36,7 @@
       "custom": {},
       "source": {
         "annotation": "@exposes #index to #xss with #xss",
-        "code": "# @exposes #index to #xss with #xss\n\n\n\n@flask_app.route('/')\ndef index_page():\n",
+        "code": "# @exposes #index to #xss with #xss\n\n\n\n\n\n",
         "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
         "line": 1
       }
@@ -49,7 +49,7 @@
       "custom": {},
       "source": {
         "annotation": "@exposes #index to Buffer Overflow with #buffer",
-        "code": "# @exposes #index to Buffer Overflow with #buffer\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
+        "code": "# @exposes #index to Buffer Overflow with #buffer\n\n\n\n\n@flask_app.route('/')\n",
         "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
         "line": 1
       }
@@ -62,7 +62,7 @@
       "custom": {},
       "source": {
         "annotation": "@exposes #login to Buffer Overthrow with #buffer",
-        "code": "# @exposes #login to Buffer Overthrow with #buffer\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
+        "code": "# @exposes #login to Buffer Overthrow with #buffer\n\n\n\n\n@flask_app.route('/')\n",
         "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
         "line": 1
       }
@@ -75,7 +75,72 @@
       "custom": {},
       "source": {
         "annotation": "@exposes #web_server to Buffer Overflow with #buffer",
-        "code": "# @exposes #web_server to Buffer Overflow with #buffer\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
+        "code": "# @exposes #web_server to Buffer Overflow with #buffer\n\n\n\n\n@flask_app.route('/')\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "threat": "#javascript_manipulation",
+      "component": "#index",
+      "details": "#xss",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #index to javascript manipulation with #xss",
+        "code": "# @exposes #index to javascript manipulation with #xss\n\n\n\n@flask_app.route('/')\ndef index_page():\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "threat": "#tampering",
+      "component": "#index",
+      "details": "#csrf",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #index to tampering with #csrf",
+        "code": "# @exposes #index to tampering with #csrf\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "threat": "#tampering",
+      "component": "#calculate",
+      "details": "#csrf",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #calculate to tampering with #csrf",
+        "code": "# @exposes #calculate to tampering with #csrf\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "threat": "#tampering",
+      "component": "#calculate2",
+      "details": "#csrf",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #calculate2 to tampering with #csrf",
+        "code": "# @exposes #calculate2 to tampering with #csrf\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "threat": "#tampering_manipulation",
+      "component": "#calculator",
+      "details": "#csrf",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #calculator to tampering manipulation with #csrf",
+        "code": "# @exposes #calculator to tampering manipulation with #csrf\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
         "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
         "line": 1
       }
@@ -134,13 +199,13 @@
     },
     {
       "threat": "#attacker",
-      "component": "#server",
+      "component": "#web_server",
       "details": "#sshconnect",
       "description": "",
       "custom": {},
       "source": {
-        "annotation": "@exposes server to attacker with #sshconnect",
-        "code": "# @exposes server to attacker with #sshconnect\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n",
+        "annotation": "@exposes #web_server to attacker with #sshconnect",
+        "code": "# @exposes #web_server to attacker with #sshconnect\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
@@ -153,7 +218,20 @@
       "custom": {},
       "source": {
         "annotation": "@exposes #dbserver to Information Disclosure with #sqlinjection",
-        "code": "# @exposes #dbserver to Information Disclosure with #sqlinjection\n\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n",
+        "code": "# @exposes #dbserver to Information Disclosure with #sqlinjection\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "threat": "#information_disclosure",
+      "component": "#dbserver",
+      "details": "credentials not hashed",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #dbserver to information disclosure with credentials not hashed",
+        "code": "# @exposes #dbserver to information disclosure with credentials not hashed\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n  associate_public_ip_address = true\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
@@ -171,7 +249,7 @@
       "custom": {},
       "source": {
         "annotation": "@connects #guest to #index with HTTP-GET",
-        "code": "# @connects #guest to #index with HTTP-GET\n\n\n\n\n@flask_app.route('/')\n",
+        "code": "# @connects #guest to #index with HTTP-GET\n\n\n\n\n\n",
         "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
         "line": 1
       }
@@ -185,7 +263,7 @@
       "custom": {},
       "source": {
         "annotation": "@connects #index to #guest with HTTP-GET",
-        "code": "# @connects #index to #guest with HTTP-GET\n\n\n\n\n@flask_app.route('/')\n",
+        "code": "# @connects #index to #guest with HTTP-GET\n\n\n\n\n\n",
         "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
         "line": 1
       }
@@ -549,7 +627,7 @@
       "custom": {},
       "source": {
         "annotation": "@connects #db to #dbserver with MySQL",
-        "code": "# @connects #db to #dbserver with MySQL\n\n\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n",
+        "code": "# @connects #db to #dbserver with MySQL\n\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
@@ -557,5 +635,5 @@
   ],
   "reviews": [],
   "tests": [],
-  "run_id": "0381a3b6f3ed4fe997e02954e7e74d6f"
+  "run_id": "32e054fc985146f5a894948c35992a46"
 }

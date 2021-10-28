@@ -34,6 +34,15 @@ def verify_token(token):
 # @exposes #login to Buffer Overthrow with #buffer
 # @exposes #web_server to Buffer Overflow with #buffer
 
+# @threat Cross site scripting (reflected) (#xss)
+# @exposes #index to javascript manipulation with #xss
+
+# @threat Cross Site Request Forgery (#csrf)
+# @exposes #index to tampering with #csrf
+# @exposes #calculate to tampering with #csrf
+# @exposes #calculate2 to tampering with #csrf
+# @exposes #calculator to tampering manipulation with #csrf
+
 
 @flask_app.route('/')
 def index_page():

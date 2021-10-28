@@ -18,8 +18,8 @@ A threatspec project.
 
 
 
-@flask_app.route('/')
-def index_page():
+
+
 
 ```
 /home/kali/cyber/projects/calculator_app/app/main.py:1
@@ -31,9 +31,9 @@ def index_page():
 # @exposes #index to Buffer Overflow with #buffer
 
 
+
+
 @flask_app.route('/')
-def index_page():
-    print(request.headers)
 
 ```
 /home/kali/cyber/projects/calculator_app/app/main.py:1
@@ -45,9 +45,9 @@ def index_page():
 # @exposes #login to Buffer Overthrow with #buffer
 
 
+
+
 @flask_app.route('/')
-def index_page():
-    print(request.headers)
 
 ```
 /home/kali/cyber/projects/calculator_app/app/main.py:1
@@ -57,6 +57,76 @@ def index_page():
 
 ```
 # @exposes #web_server to Buffer Overflow with #buffer
+
+
+
+
+@flask_app.route('/')
+
+```
+/home/kali/cyber/projects/calculator_app/app/main.py:1
+
+## Javascript manipulation against CalcApp:Web:Server:Index
+#xss
+
+```
+# @exposes #index to javascript manipulation with #xss
+
+
+
+@flask_app.route('/')
+def index_page():
+
+```
+/home/kali/cyber/projects/calculator_app/app/main.py:1
+
+## Tampering against CalcApp:Web:Server:Index
+#csrf
+
+```
+# @exposes #index to tampering with #csrf
+
+
+@flask_app.route('/')
+def index_page():
+    print(request.headers)
+
+```
+/home/kali/cyber/projects/calculator_app/app/main.py:1
+
+## Tampering against CalcApp:Web:Server:Calculate
+#csrf
+
+```
+# @exposes #calculate to tampering with #csrf
+
+
+@flask_app.route('/')
+def index_page():
+    print(request.headers)
+
+```
+/home/kali/cyber/projects/calculator_app/app/main.py:1
+
+## Tampering against CalcApp:Web:Server:Calculate2
+#csrf
+
+```
+# @exposes #calculate2 to tampering with #csrf
+
+
+@flask_app.route('/')
+def index_page():
+    print(request.headers)
+
+```
+/home/kali/cyber/projects/calculator_app/app/main.py:1
+
+## Tampering manipulation against CalcApp:Web:Server:Calculator
+#csrf
+
+```
+# @exposes #calculator to tampering manipulation with #csrf
 
 
 @flask_app.route('/')
@@ -122,11 +192,11 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## Attacker against server
+## Attacker against CalcApp:Web:Server
 #sshconnect
 
 ```
-# @exposes server to attacker with #sshconnect
+# @exposes #web_server to attacker with #sshconnect
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 >>>>>>> 129f42520dc7d428d61397518046897bc096aac6
   ami = "ami-0943382e114f188e8"
@@ -142,10 +212,24 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 ```
 # @exposes #dbserver to Information Disclosure with #sqlinjection
 
-
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
   ami = "ami-0943382e114f188e8"
   instance_type = "t2.micro"
+  key_name = "cyber94-cmetcalfe"
+
+```
+/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
+
+## Information disclosure against CalcAPP:VPC:DB:DBserver
+Credentials not hashed
+
+```
+# @exposes #dbserver to information disclosure with credentials not hashed
+resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
+  ami = "ami-0943382e114f188e8"
+  instance_type = "t2.micro"
+  key_name = "cyber94-cmetcalfe"
+  associate_public_ip_address = true
 
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
@@ -202,7 +286,7 @@ HTTP-GET
 
 
 
-@flask_app.route('/')
+
 
 ```
 /home/kali/cyber/projects/calculator_app/app/main.py:1
@@ -216,7 +300,7 @@ HTTP-GET
 
 
 
-@flask_app.route('/')
+
 
 ```
 /home/kali/cyber/projects/calculator_app/app/main.py:1
@@ -578,9 +662,9 @@ MySQL
 # @connects #db to #dbserver with MySQL
 
 
-
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
   ami = "ami-0943382e114f188e8"
+  instance_type = "t2.micro"
 
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
@@ -594,9 +678,11 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 ## CalcApp:Web:Server
 
-## CalcApp:Web:Server:Calculator
+## CalcApp:Web:Server:Calculate
 
-## server
+## CalcApp:Web:Server:Calculate2
+
+## CalcApp:Web:Server:Calculator
 
 ## CalcAPP:VPC:DB:DBserver
 
@@ -607,10 +693,6 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 ## CalcApp:Web:Server:Authenticate
 
 ## External:User
-
-## CalcApp:Web:Server:Calculate
-
-## CalcApp:Web:Server:Calculate2
 
 ## CalcApp
 
@@ -644,6 +726,15 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 
 ## Buffer overthrow
+
+
+## Javascript manipulation
+
+
+## Tampering
+
+
+## Tampering manipulation
 
 
 ## Information disclosure
