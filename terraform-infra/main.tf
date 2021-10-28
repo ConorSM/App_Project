@@ -178,7 +178,7 @@ resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_public_tf" {
 # @threat Flooding (#flooding)
 # @exposes #web_server to Denial of Service with #flooding
 
-# @threat attacker accesses #web_server via SSH (#sshconnect)
+# @threat attacker accesses #web via SSH (#sshconnect)
 # @exposes server to attacker with #sshconnect
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 >>>>>>> 129f42520dc7d428d61397518046897bc096aac6
