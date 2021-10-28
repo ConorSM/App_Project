@@ -53,6 +53,7 @@ resource "aws_route_table" "cyber94_calc_cmetcalfe_rt_tf" {
 
 # @component CalcApp:VPC:Subnet (#subnet)
 # @connects #vpc to #subnet with Network
+
 resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_public_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
   cidr_block = "10.104.1.0/24"
@@ -169,10 +170,13 @@ resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_public_tf" {
 <<<<<<< HEAD
 
 =======
-# @component CalcApp:Web:Server (#Web_server)
+# @component CalcApp:Web:Server (#web_server)
 
 # @connects #subnet to #web_server with Network
 # @connects #webserver to #subnet with Network
+
+# @threat Flooding (#flooding)
+# @exposes #web_server to Denial of Service with #flooding
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 >>>>>>> 129f42520dc7d428d61397518046897bc096aac6
   ami = "ami-0943382e114f188e8"

@@ -24,6 +24,20 @@ def login_page():
 ```
 /home/kali/cyber/projects/calculator_app/app/main.py:1
 
+## Denial of service against CalcApp:Web:Server
+#flooding
+
+```
+# @exposes #web_server to Denial of Service with #flooding
+resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
+>>>>>>> 129f42520dc7d428d61397518046897bc096aac6
+  ami = "ami-0943382e114f188e8"
+  instance_type = "t2.micro"
+  key_name = "cyber94-cmetcalfe"
+
+```
+/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
+
 
 # Acceptances
 
@@ -394,25 +408,25 @@ Network
 
 ```
 # @connects #vpc to #subnet with Network
+
 resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_public_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
   cidr_block = "10.104.1.0/24"
 
-  tags = {
 
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## CalcApp:VPC:Subnet To 
+## CalcApp:VPC:Subnet To CalcApp:Web:Server
 Network
 
 ```
 # @connects #subnet to #web_server with Network
+
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 >>>>>>> 129f42520dc7d428d61397518046897bc096aac6
   ami = "ami-0943382e114f188e8"
   instance_type = "t2.micro"
-  key_name = "cyber94-cmetcalfe"
 
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
@@ -422,11 +436,11 @@ Network
 
 ```
 # @connects #webserver to #subnet with Network
+
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 >>>>>>> 129f42520dc7d428d61397518046897bc096aac6
   ami = "ami-0943382e114f188e8"
   instance_type = "t2.micro"
-  key_name = "cyber94-cmetcalfe"
 
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
@@ -480,6 +494,8 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 ## CalcApp:Web:Server:Login
 
+## CalcApp:Web:Server
+
 ## guest
 
 ## CalcApp:Web:Server:Help
@@ -504,8 +520,6 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 ## 
 
-## 
-
 ## CalcApp:VPC:Bastion
 
 ## CalcApp:VPC:Bastion:bastionServer
@@ -527,6 +541,9 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 
 ## Information disclosure
+
+
+## Denial of service
 
 
 
