@@ -38,6 +38,20 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
+## Information disclosure against CalcAPP:VPC:DB:DBserver
+#sqlinjection
+
+```
+# @exposes #dbserver to Information Disclosure with #sqlinjection
+resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
+  ami = "ami-0943382e114f188e8"
+  instance_type = "t2.micro"
+  key_name = "cyber94-cmetcalfe"
+  associate_public_ip_address = true
+
+```
+/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
+
 
 # Acceptances
 
@@ -459,7 +473,7 @@ resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_bastion_tf" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## CalcApp:VPC:Bastion To CalcApp:VPC:Bastion:bastionServer
+## CalcApp:VPC:Bastion To CalcApp:VPC:Bastion:BastionServer
 Network
 
 ```
@@ -478,11 +492,11 @@ MySQL
 
 ```
 # @connects #db to #dbserver with MySQL
+
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
   ami = "ami-0943382e114f188e8"
   instance_type = "t2.micro"
   key_name = "cyber94-cmetcalfe"
-  associate_public_ip_address = true
 
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
@@ -495,6 +509,8 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 ## CalcApp:Web:Server:Login
 
 ## CalcApp:Web:Server
+
+## CalcAPP:VPC:DB:DBserver
 
 ## guest
 
@@ -522,11 +538,9 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 ## CalcApp:VPC:Bastion
 
-## CalcApp:VPC:Bastion:bastionServer
+## CalcApp:VPC:Bastion:BastionServer
 
 ## CalcApp:VPC:DB
-
-## CalcAPP:VPC:DB:DBserver
 
 
 # Threats

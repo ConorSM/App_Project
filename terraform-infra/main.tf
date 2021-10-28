@@ -336,7 +336,7 @@ resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_bastion_tf" {
   }
 }
 
-# @component CalcApp:VPC:Bastion:bastionServer (#bastion_server)
+# @component CalcApp:VPC:Bastion:BastionServer (#bastion_server)
 # @connects #bastion to #bastion_server with Network
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_bastion" {
   ami = "ami-0943382e114f188e8"
@@ -461,6 +461,8 @@ resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_db_tf" {
 
 # @component CalcAPP:VPC:DB:DBserver (#dbserver)
 # @connects #db to #dbserver with MySQL
+
+# @exposes #dbserver to Information Disclosure with #sqlinjection
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
   ami = "ami-0943382e114f188e8"
   instance_type = "t2.micro"

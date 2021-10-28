@@ -66,6 +66,19 @@
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
+    },
+    {
+      "threat": "#information_disclosure",
+      "component": "#dbserver",
+      "details": "#sqlinjection",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #dbserver to Information Disclosure with #sqlinjection",
+        "code": "# @exposes #dbserver to Information Disclosure with #sqlinjection\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n  associate_public_ip_address = true\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
     }
   ],
   "transfers": [],
@@ -458,7 +471,7 @@
       "custom": {},
       "source": {
         "annotation": "@connects #db to #dbserver with MySQL",
-        "code": "# @connects #db to #dbserver with MySQL\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n  associate_public_ip_address = true\n",
+        "code": "# @connects #db to #dbserver with MySQL\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
@@ -466,5 +479,5 @@
   ],
   "reviews": [],
   "tests": [],
-  "run_id": "6d3459e4485344b1b1ccdb938af36c7a"
+  "run_id": "9c13c108fa5044f1a7d0b3ef98d30abe"
 }
