@@ -29,6 +29,12 @@ def verify_token(token):
 # @control Sanitize Code (#sanitize)
 # @mitigate #index against #xss# with #sanitize
 
+# @threat Buffer overflow (#buffer)
+# @exposes #index to Buffer Overflow with #buffer
+# @exposes #login to Buffer Overthrow with #buffer
+# @exposes #web_server to Buffer Overflow with #buffer
+
+
 @flask_app.route('/')
 def index_page():
     print(request.headers)
@@ -106,6 +112,7 @@ def authenticate_users():
 # @connects #user to #calculator with HTTP-GET
 # @connects #calculator to #user with HTTP-GET
 
+# @exposes #calculator to #sqlinjection with #sqlinjection
 @flask_app.route('/calculator', methods = ['GET'])
 def calculator_get():
     isUserLoggedIn = False

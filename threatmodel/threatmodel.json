@@ -8,7 +8,7 @@
       "custom": {},
       "source": {
         "annotation": "@mitigate #index against #xss# with #sanitize",
-        "code": "# @mitigate #index against #xss# with #sanitize\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n    isUserLoggedIn = False\n",
+        "code": "# @mitigate #index against #xss# with #sanitize\n\n\n\n@flask_app.route('/')\ndef index_page():\n",
         "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
         "line": 1
       }
@@ -42,6 +42,45 @@
   ],
   "exposures": [
     {
+      "threat": "#buffer_overflow",
+      "component": "#index",
+      "details": "#buffer",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #index to Buffer Overflow with #buffer",
+        "code": "# @exposes #index to Buffer Overflow with #buffer\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "threat": "#buffer_overthrow",
+      "component": "#login",
+      "details": "#buffer",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #login to Buffer Overthrow with #buffer",
+        "code": "# @exposes #login to Buffer Overthrow with #buffer\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "threat": "#buffer_overflow",
+      "component": "#web_server",
+      "details": "#buffer",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #web_server to Buffer Overflow with #buffer",
+        "code": "# @exposes #web_server to Buffer Overflow with #buffer\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
       "threat": "#information_disclosure",
       "component": "#login",
       "details": "#brute",
@@ -50,6 +89,19 @@
       "source": {
         "annotation": "@exposes #login to information disclosure with #brute",
         "code": "# @exposes #login to information disclosure with #brute\n\n@flask_app.route('/login')\ndef login_page():\n    return render_template('login.html')\n\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "threat": "#sqlinjection",
+      "component": "#calculator",
+      "details": "#sqlinjection",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #calculator to #sqlinjection with #sqlinjection",
+        "code": "# @exposes #calculator to #sqlinjection with #sqlinjection\n@flask_app.route('/calculator', methods = ['GET'])\ndef calculator_get():\n    isUserLoggedIn = False\n    if 'token' in request.cookies:\n        isUserLoggedIn = verify_token(request.cookies['token'])\n",
         "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
         "line": 1
       }
@@ -93,7 +145,7 @@
       "custom": {},
       "source": {
         "annotation": "@connects #guest to #index with HTTP-GET",
-        "code": "# @connects #guest to #index with HTTP-GET\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
+        "code": "# @connects #guest to #index with HTTP-GET\n\n\n\n\n@flask_app.route('/')\n",
         "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
         "line": 1
       }
@@ -107,7 +159,7 @@
       "custom": {},
       "source": {
         "annotation": "@connects #index to #guest with HTTP-GET",
-        "code": "# @connects #index to #guest with HTTP-GET\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
+        "code": "# @connects #index to #guest with HTTP-GET\n\n\n\n\n@flask_app.route('/')\n",
         "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
         "line": 1
       }
@@ -479,5 +531,5 @@
   ],
   "reviews": [],
   "tests": [],
-  "run_id": "9c13c108fa5044f1a7d0b3ef98d30abe"
+  "run_id": "ca16f4399b744844bb34ca2299378492"
 }

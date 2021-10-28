@@ -10,6 +10,48 @@ A threatspec project.
 
 # Exposures
 
+## Buffer overflow against CalcApp:Web:Server:Index
+#buffer
+
+```
+# @exposes #index to Buffer Overflow with #buffer
+
+
+@flask_app.route('/')
+def index_page():
+    print(request.headers)
+
+```
+/home/kali/cyber/projects/calculator_app/app/main.py:1
+
+## Buffer overthrow against CalcApp:Web:Server:Login
+#buffer
+
+```
+# @exposes #login to Buffer Overthrow with #buffer
+
+
+@flask_app.route('/')
+def index_page():
+    print(request.headers)
+
+```
+/home/kali/cyber/projects/calculator_app/app/main.py:1
+
+## Buffer overflow against CalcApp:Web:Server
+#buffer
+
+```
+# @exposes #web_server to Buffer Overflow with #buffer
+
+
+@flask_app.route('/')
+def index_page():
+    print(request.headers)
+
+```
+/home/kali/cyber/projects/calculator_app/app/main.py:1
+
 ## Information disclosure against CalcApp:Web:Server:Login
 #brute
 
@@ -20,6 +62,20 @@ A threatspec project.
 def login_page():
     return render_template('login.html')
 
+
+```
+/home/kali/cyber/projects/calculator_app/app/main.py:1
+
+## Sql injection against CalcApp:Web:Server:Calculator
+#sqlinjection
+
+```
+# @exposes #calculator to #sqlinjection with #sqlinjection
+@flask_app.route('/calculator', methods = ['GET'])
+def calculator_get():
+    isUserLoggedIn = False
+    if 'token' in request.cookies:
+        isUserLoggedIn = verify_token(request.cookies['token'])
 
 ```
 /home/kali/cyber/projects/calculator_app/app/main.py:1
@@ -67,10 +123,10 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 ```
 # @mitigate #index against #xss# with #sanitize
 
+
+
 @flask_app.route('/')
 def index_page():
-    print(request.headers)
-    isUserLoggedIn = False
 
 ```
 /home/kali/cyber/projects/calculator_app/app/main.py:1
@@ -116,9 +172,9 @@ HTTP-GET
 # @connects #guest to #index with HTTP-GET
 
 
+
+
 @flask_app.route('/')
-def index_page():
-    print(request.headers)
 
 ```
 /home/kali/cyber/projects/calculator_app/app/main.py:1
@@ -130,9 +186,9 @@ HTTP-GET
 # @connects #index to #guest with HTTP-GET
 
 
+
+
 @flask_app.route('/')
-def index_page():
-    print(request.headers)
 
 ```
 /home/kali/cyber/projects/calculator_app/app/main.py:1
@@ -510,6 +566,8 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 ## CalcApp:Web:Server
 
+## CalcApp:Web:Server:Calculator
+
 ## CalcAPP:VPC:DB:DBserver
 
 ## guest
@@ -519,8 +577,6 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 ## CalcApp:Web:Server:Authenticate
 
 ## External:User
-
-## CalcApp:Web:Server:Calculator
 
 ## CalcApp:Web:Server:Calculate
 
@@ -552,6 +608,12 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 
 ## Password brute forcing
+
+
+## Buffer overflow
+
+
+## Buffer overthrow
 
 
 ## Information disclosure

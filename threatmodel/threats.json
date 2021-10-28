@@ -2,43 +2,64 @@
   "threats": {
     "#sqlinjection": {
       "id": "#sqlinjection",
-      "run_id": "9c13c108fa5044f1a7d0b3ef98d30abe",
+      "run_id": "ca16f4399b744844bb34ca2299378492",
       "name": "SQL injection",
       "description": "",
       "custom": {}
     },
     "#brute": {
       "id": "#brute",
-      "run_id": "9c13c108fa5044f1a7d0b3ef98d30abe",
+      "run_id": "ca16f4399b744844bb34ca2299378492",
       "name": "Password Brute Forcing",
       "description": "",
       "custom": {}
     },
     "#xss": {
       "id": "#xss",
-      "run_id": "9c13c108fa5044f1a7d0b3ef98d30abe",
+      "run_id": "ca16f4399b744844bb34ca2299378492",
       "name": "#xss#",
       "description": "",
       "custom": {}
     },
     "#information_disclosure": {
       "id": "#information_disclosure",
-      "run_id": "9c13c108fa5044f1a7d0b3ef98d30abe",
+      "run_id": "ca16f4399b744844bb34ca2299378492",
       "name": "Information Disclosure",
       "description": "",
       "custom": {}
     },
     "#flooding": {
       "id": "#flooding",
-      "run_id": "9c13c108fa5044f1a7d0b3ef98d30abe",
+      "run_id": "ca16f4399b744844bb34ca2299378492",
       "name": "Flooding",
       "description": "",
       "custom": {}
     },
     "#denial_of_service": {
       "id": "#denial_of_service",
-      "run_id": "9c13c108fa5044f1a7d0b3ef98d30abe",
+      "run_id": "ca16f4399b744844bb34ca2299378492",
       "name": "Denial of Service",
+      "description": "",
+      "custom": {}
+    },
+    "#buffer": {
+      "id": "#buffer",
+      "run_id": "ca16f4399b744844bb34ca2299378492",
+      "name": "Buffer overflow",
+      "description": "",
+      "custom": {}
+    },
+    "#buffer_overflow": {
+      "id": "#buffer_overflow",
+      "run_id": "ca16f4399b744844bb34ca2299378492",
+      "name": "Buffer Overflow",
+      "description": "",
+      "custom": {}
+    },
+    "#buffer_overthrow": {
+      "id": "#buffer_overthrow",
+      "run_id": "ca16f4399b744844bb34ca2299378492",
+      "name": "Buffer Overthrow",
       "description": "",
       "custom": {}
     }
