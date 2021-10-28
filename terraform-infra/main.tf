@@ -242,7 +242,7 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 
 # @component CalcApp:VPC:SubnetBastion (#subnet_bastion)
 # @connects #vpc to #subnet_bastion with Network
-# @connects #subnet_bastion to #vps with Network
+# @connects #subnet_bastion to #vpc with Network
 
 resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_bastion_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
@@ -342,8 +342,8 @@ resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_bastion_tf" {
 }
 
 # @component CalcApp:VPC:SubnetBastion:BastionServer (#bastion_server)
-# @connects #bastion to #bastion_server with Network
-# @connects #bastion_server to #bastion with Network
+# @connects #subnet_bastion to #bastion_server with Network
+# @connects #bastion_server to #subnet_bastion with Network
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_bastion" {
   ami = "ami-0943382e114f188e8"
   instance_type = "t2.micro"

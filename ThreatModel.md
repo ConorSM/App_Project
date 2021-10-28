@@ -641,11 +641,11 @@ resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_bastion_tf" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## CalcApp:VPC:SubnetBastion To 
+## CalcApp:VPC:SubnetBastion To CalcApp:VPC
 Network
 
 ```
-# @connects #subnet_bastion to #vps with Network
+# @connects #subnet_bastion to #vpc with Network
 
 resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_bastion_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
@@ -655,11 +655,11 @@ resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_bastion_tf" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## CalcApp:VPC:Bastion To CalcApp:VPC:SubnetBastion:BastionServer
+## CalcApp:VPC:SubnetBastion To CalcApp:VPC:SubnetBastion:BastionServer
 Network
 
 ```
-# @connects #bastion to #bastion_server with Network
+# @connects #subnet_bastion to #bastion_server with Network
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_bastion" {
   ami = "ami-0943382e114f188e8"
   instance_type = "t2.micro"
@@ -669,11 +669,11 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_bastion" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## CalcApp:VPC:SubnetBastion:BastionServer To CalcApp:VPC:Bastion
+## CalcApp:VPC:SubnetBastion:BastionServer To CalcApp:VPC:SubnetBastion
 Network
 
 ```
-# @connects #bastion_server to #bastion with Network
+# @connects #bastion_server to #subnet_bastion with Network
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_bastion" {
   ami = "ami-0943382e114f188e8"
   instance_type = "t2.micro"
@@ -775,10 +775,6 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 ## CalcApp:VPC:SubnetApp
 
 ## CalcApp:VPC:SubnetBastion
-
-## 
-
-## CalcApp:VPC:Bastion
 
 ## CalcApp:VPC:SubnetBastion:BastionServer
 

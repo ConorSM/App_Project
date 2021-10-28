@@ -606,42 +606,42 @@
     },
     {
       "source_component": "#subnet_bastion",
-      "destination_component": "#vps",
+      "destination_component": "#vpc",
       "direction": "to",
       "details": "Network",
       "description": "",
       "custom": {},
       "source": {
-        "annotation": "@connects #subnet_bastion to #vps with Network",
-        "code": "# @connects #subnet_bastion to #vps with Network\n\nresource \"aws_subnet\" \"cyber94_calc_cmetcalfe_subnet_bastion_tf\" {\n  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id\n  cidr_block = \"10.104.3.0/24\"\n\n",
+        "annotation": "@connects #subnet_bastion to #vpc with Network",
+        "code": "# @connects #subnet_bastion to #vpc with Network\n\nresource \"aws_subnet\" \"cyber94_calc_cmetcalfe_subnet_bastion_tf\" {\n  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id\n  cidr_block = \"10.104.3.0/24\"\n\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
     },
     {
-      "source_component": "#bastion",
+      "source_component": "#subnet_bastion",
       "destination_component": "#bastion_server",
       "direction": "to",
       "details": "Network",
       "description": "",
       "custom": {},
       "source": {
-        "annotation": "@connects #bastion to #bastion_server with Network",
-        "code": "# @connects #bastion to #bastion_server with Network\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_bastion\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n  associate_public_ip_address = true\n",
+        "annotation": "@connects #subnet_bastion to #bastion_server with Network",
+        "code": "# @connects #subnet_bastion to #bastion_server with Network\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_bastion\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n  associate_public_ip_address = true\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
     },
     {
       "source_component": "#bastion_server",
-      "destination_component": "#bastion",
+      "destination_component": "#subnet_bastion",
       "direction": "to",
       "details": "Network",
       "description": "",
       "custom": {},
       "source": {
-        "annotation": "@connects #bastion_server to #bastion with Network",
-        "code": "# @connects #bastion_server to #bastion with Network\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_bastion\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n  associate_public_ip_address = true\n",
+        "annotation": "@connects #bastion_server to #subnet_bastion with Network",
+        "code": "# @connects #bastion_server to #subnet_bastion with Network\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_bastion\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n  associate_public_ip_address = true\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
@@ -705,5 +705,5 @@
   ],
   "reviews": [],
   "tests": [],
-  "run_id": "cd4a65d9dab1455f99f260d8cb31084e"
+  "run_id": "de0710e0c666455698f0857bff79b6ce"
 }
