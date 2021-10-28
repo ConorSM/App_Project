@@ -1,0 +1,457 @@
+{
+  "mitigations": [
+    {
+      "control": "#sanitize",
+      "threat": "#xss",
+      "component": "#index",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@mitigate #index against #xss# with #sanitize",
+        "code": "# @mitigate #index against #xss# with #sanitize\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n    isUserLoggedIn = False\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "control": "#validate",
+      "threat": "#sqlinjection",
+      "component": "#login",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@mitigates #login against #sqlinjection with #validate",
+        "code": "# @mitigates #login against #sqlinjection with #validate\n\n\n@flask_app.route('/login')\ndef login_page():\n    return render_template('login.html')\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "control": "#passpolicy",
+      "threat": "#brute",
+      "component": "#login",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@mitigates #login against #brute with #passpolicy",
+        "code": "# @mitigates #login against #brute with #passpolicy\n\n@flask_app.route('/login')\ndef login_page():\n    return render_template('login.html')\n\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    }
+  ],
+  "exposures": [
+    {
+      "threat": "#information_disclosure",
+      "component": "#login",
+      "details": "#brute",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #login to information disclosure with #brute",
+        "code": "# @exposes #login to information disclosure with #brute\n\n@flask_app.route('/login')\ndef login_page():\n    return render_template('login.html')\n\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    }
+  ],
+  "transfers": [],
+  "acceptances": [],
+  "connections": [
+    {
+      "source_component": "#guest",
+      "destination_component": "#index",
+      "direction": "to",
+      "details": "HTTP-GET",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #guest to #index with HTTP-GET",
+        "code": "# @connects #guest to #index with HTTP-GET\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#index",
+      "destination_component": "#guest",
+      "direction": "to",
+      "details": "HTTP-GET",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #index to #guest with HTTP-GET",
+        "code": "# @connects #index to #guest with HTTP-GET\n\n\n@flask_app.route('/')\ndef index_page():\n    print(request.headers)\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#guest",
+      "destination_component": "#help",
+      "direction": "to",
+      "details": "HTTP-GET",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #guest to #help with HTTP-GET",
+        "code": "# @connects #guest to #help with HTTP-GET\n\n@flask_app.route('/help')\ndef help_page():\n    return \"This is the help page\"\n\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#help",
+      "destination_component": "#guest",
+      "direction": "to",
+      "details": "HTTP-GET",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #help to #guest with HTTP-GET",
+        "code": "# @connects #help to #guest with HTTP-GET\n\n@flask_app.route('/help')\ndef help_page():\n    return \"This is the help page\"\n\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#guest",
+      "destination_component": "#login",
+      "direction": "to",
+      "details": "HTTP-GET",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #guest to #login with HTTP-GET",
+        "code": "# @connects #guest to #login with HTTP-GET\n\n\n\n@flask_app.route('/login')\ndef login_page():\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#login",
+      "destination_component": "#guest",
+      "direction": "to",
+      "details": "HTTP-GET",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #login to guest with HTTP-GET",
+        "code": "# @connects #login to guest with HTTP-GET\n\n\n\n@flask_app.route('/login')\ndef login_page():\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#guest",
+      "destination_component": "#authenticate",
+      "direction": "to",
+      "details": "HTTP-POST",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #guest to #authenticate with HTTP-POST",
+        "code": "# @connects #guest to #authenticate with HTTP-POST\n\n\n@flask_app.route('/authenticate', methods = ['POST'])\ndef authenticate_users():\n    data = request.form\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#authenticate",
+      "destination_component": "#guest",
+      "direction": "with",
+      "details": "HTTP-POST",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #authenticate with #guest with HTTP-POST",
+        "code": "# @connects #authenticate with #guest with HTTP-POST\n\n\n@flask_app.route('/authenticate', methods = ['POST'])\ndef authenticate_users():\n    data = request.form\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#user",
+      "destination_component": "#authenticate",
+      "direction": "to",
+      "details": "HTTPs-POST",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #user to #authenticate with HTTPs-POST",
+        "code": "# @connects #user to #authenticate with HTTPs-POST\n\n@flask_app.route('/authenticate', methods = ['POST'])\ndef authenticate_users():\n    data = request.form\n    username = data['username']\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#authenticate",
+      "destination_component": "#user",
+      "direction": "to",
+      "details": "HTTPs-POST",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #authenticate to #user with HTTPs-POST",
+        "code": "# @connects #authenticate to #user with HTTPs-POST\n\n@flask_app.route('/authenticate', methods = ['POST'])\ndef authenticate_users():\n    data = request.form\n    username = data['username']\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#guest",
+      "destination_component": "#calculator",
+      "direction": "to",
+      "details": "HTTP-GET",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #guest to #calculator with HTTP-GET",
+        "code": "# @connects #guest to #calculator with HTTP-GET\n\n\n@flask_app.route('/calculator', methods = ['GET'])\ndef calculator_get():\n    isUserLoggedIn = False\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#calculator",
+      "destination_component": "#guest",
+      "direction": "to",
+      "details": "HTTP-GET",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #calculator to #guest with HTTP-GET",
+        "code": "# @connects #calculator to #guest with HTTP-GET\n\n\n@flask_app.route('/calculator', methods = ['GET'])\ndef calculator_get():\n    isUserLoggedIn = False\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#user",
+      "destination_component": "#calculator",
+      "direction": "to",
+      "details": "HTTP-GET",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #user to #calculator with HTTP-GET",
+        "code": "# @connects #user to #calculator with HTTP-GET\n\n@flask_app.route('/calculator', methods = ['GET'])\ndef calculator_get():\n    isUserLoggedIn = False\n    if 'token' in request.cookies:\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#calculator",
+      "destination_component": "#user",
+      "direction": "to",
+      "details": "HTTP-GET",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #calculator to #user with HTTP-GET",
+        "code": "# @connects #calculator to #user with HTTP-GET\n\n@flask_app.route('/calculator', methods = ['GET'])\ndef calculator_get():\n    isUserLoggedIn = False\n    if 'token' in request.cookies:\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#user",
+      "destination_component": "#calculate",
+      "direction": "to",
+      "details": "HTTP-POST",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #user to #calculate with HTTP-POST",
+        "code": "# @connects #user to #calculate with HTTP-POST\n\n@flask_app.route('/calculate', methods = ['POST'])\ndef calculate_post():\n    number_1 = request.form.get('number_1', type = int)\n    number_2 = request.form.get('number_2', type = int)\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#calculate",
+      "destination_component": "#user",
+      "direction": "to",
+      "details": "HTTP-POST",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #calculate to #user with HTTP-POST",
+        "code": "# @connects #calculate to #user with HTTP-POST\n\n@flask_app.route('/calculate', methods = ['POST'])\ndef calculate_post():\n    number_1 = request.form.get('number_1', type = int)\n    number_2 = request.form.get('number_2', type = int)\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#user",
+      "destination_component": "#calculate2",
+      "direction": "to",
+      "details": "HTTP-POST",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #user to #calculate2 with HTTP-POST",
+        "code": "# @connects #user to #calculate2 with HTTP-POST\n\n\n@flask_app.route('/calculate2', methods = ['POST'])\ndef calculate_post2():\n    print(request.form)\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#calculate2",
+      "destination_component": "#user",
+      "direction": "to",
+      "details": "HTTP-POST",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #calculate2 to #user with HTTP-POST",
+        "code": "# @connects #calculate2 to #user with HTTP-POST\n\n\n@flask_app.route('/calculate2', methods = ['POST'])\ndef calculate_post2():\n    print(request.form)\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#app",
+      "destination_component": "#vpc",
+      "direction": "to",
+      "details": "HTTP,SSH",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #app to #vpc with HTTP,SSH",
+        "code": "# @connects #app to #vpc with HTTP,SSH\n\nresource \"aws_vpc\" \"cyber94_calc_cmetcalfe_vpc_tf\" {\n  cidr_block = \"10.104.0.0/16\"\n\n  tags = {\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#vpc",
+      "destination_component": "#app",
+      "direction": "to",
+      "details": "HTTP, SSH",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #vpc to #app with HTTP, SSH",
+        "code": "# @connects #vpc to #app with HTTP, SSH\n\nresource \"aws_vpc\" \"cyber94_calc_cmetcalfe_vpc_tf\" {\n  cidr_block = \"10.104.0.0/16\"\n\n  tags = {\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#vpc",
+      "destination_component": "#ig",
+      "direction": "to",
+      "details": "HTTP",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #vpc to #ig with HTTP",
+        "code": "# @connects #vpc to #ig with HTTP\nresource \"aws_internet_gateway\" \"cyber94_calc_cmetcalfe_ig_tf\" {\n  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id\n\n  tags = {\n    Name = \"cyber94_calc_cmetcalfe_ig\"\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#ig",
+      "destination_component": "#vpc",
+      "direction": "to",
+      "details": "HTTP",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #ig to #vpc with HTTP",
+        "code": "# @connects #ig to #vpc with HTTP\nresource \"aws_internet_gateway\" \"cyber94_calc_cmetcalfe_ig_tf\" {\n  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id\n\n  tags = {\n    Name = \"cyber94_calc_cmetcalfe_ig\"\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#vpc",
+      "destination_component": "#subnet",
+      "direction": "to",
+      "details": "Network",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #vpc to #subnet with Network",
+        "code": "# @connects #vpc to #subnet with Network\nresource \"aws_subnet\" \"cyber94_calc_cmetcalfe_subnet_public_tf\" {\n  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id\n  cidr_block = \"10.104.1.0/24\"\n\n  tags = {\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#subnet",
+      "destination_component": "#web_server",
+      "direction": "to",
+      "details": "Network",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #subnet to #web_server with Network",
+        "code": "# @connects #subnet to #web_server with Network\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#webserver",
+      "destination_component": "#subnet",
+      "direction": "to",
+      "details": "Network",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #webserver to #subnet with Network",
+        "code": "# @connects #webserver to #subnet with Network\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#vpc",
+      "destination_component": "#bastion",
+      "direction": "to",
+      "details": "Network",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #vpc to #bastion with Network",
+        "code": "# @connects #vpc to #bastion with Network\nresource \"aws_subnet\" \"cyber94_calc_cmetcalfe_subnet_bastion_tf\" {\n  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id\n  cidr_block = \"10.104.3.0/24\"\n\n  tags = {\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#bastion",
+      "destination_component": "#bastion_server",
+      "direction": "to",
+      "details": "Network",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #bastion to #bastion_server with Network",
+        "code": "# @connects #bastion to #bastion_server with Network\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_bastion\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n  associate_public_ip_address = true\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#db",
+      "destination_component": "#dbserver",
+      "direction": "to",
+      "details": "MySQL",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #db to #dbserver with MySQL",
+        "code": "# @connects #db to #dbserver with MySQL\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n  associate_public_ip_address = true\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    }
+  ],
+  "reviews": [],
+  "tests": [],
+  "run_id": "3db2f0091a544a8d9cb95daf1594e913"
+}

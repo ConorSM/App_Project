@@ -1,0 +1,267 @@
+{
+  "components": {
+    "#guest": {
+      "id": "#guest",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "guest",
+      "description": "",
+      "paths": [
+        [
+          "External"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#index": {
+      "id": "#index",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp:Web:Server:Index",
+      "description": "",
+      "paths": [
+        [
+          "CalcApp",
+          "Web",
+          "Server"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#help": {
+      "id": "#help",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp:Web:Server:Help",
+      "description": "",
+      "paths": [
+        [
+          "CalcApp",
+          "Web",
+          "Server"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#login": {
+      "id": "#login",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp:Web:Server:Login",
+      "description": "",
+      "paths": [
+        [
+          "CalcApp",
+          "Web",
+          "Server"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#calculator": {
+      "id": "#calculator",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp:Web:Server:Calculator",
+      "description": "",
+      "paths": [
+        [
+          "CalcApp",
+          "Web",
+          "Server"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#app": {
+      "id": "#app",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp",
+      "description": "",
+      "paths": [
+        [
+          "Internet"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#vpc": {
+      "id": "#vpc",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp:VPC",
+      "description": "",
+      "paths": [
+        [
+          "CalcApp"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#subnet": {
+      "id": "#subnet",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp:VPC:Subnet",
+      "description": "",
+      "paths": [
+        [
+          "CalcApp",
+          "VPC"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#web_server": {
+      "id": "#web_server",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "",
+      "description": "",
+      "paths": [
+        []
+      ],
+      "custom": {}
+    },
+    "#bastion": {
+      "id": "#bastion",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp:VPC:Bastion",
+      "description": "",
+      "paths": [
+        [
+          "CalcApp",
+          "VPC"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#bastion_server": {
+      "id": "#bastion_server",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp:VPC:Bastion:bastionServer",
+      "description": "",
+      "paths": [
+        [
+          "CalcApp",
+          "VPC",
+          "Bastion"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#db": {
+      "id": "#db",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp:VPC:DB",
+      "description": "",
+      "paths": [
+        [
+          "CalcApp",
+          "VPC"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#dbserver": {
+      "id": "#dbserver",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcAPP:VPC:DB:DBserver",
+      "description": "",
+      "paths": [
+        [
+          "CalcAPP",
+          "VPC",
+          "DB"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#authenticate": {
+      "id": "#authenticate",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp:Web:Server:Authenticate",
+      "description": "",
+      "paths": [
+        [
+          "CalcApp",
+          "Web",
+          "Server"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#user": {
+      "id": "#user",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "External:User",
+      "description": "",
+      "paths": [
+        [
+          "External"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#calculate": {
+      "id": "#calculate",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp:Web:Server:Calculate",
+      "description": "",
+      "paths": [
+        [
+          "CalcApp",
+          "Web",
+          "Server"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#calculate2": {
+      "id": "#calculate2",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp:Web:Server:Calculate2",
+      "description": "",
+      "paths": [
+        [
+          "CalcApp",
+          "Web",
+          "Server"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#ig": {
+      "id": "#ig",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "CalcApp:VPC:ig",
+      "description": "",
+      "paths": [
+        [
+          "CalcApp",
+          "VPC"
+        ],
+        []
+      ],
+      "custom": {}
+    },
+    "#webserver": {
+      "id": "#webserver",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "",
+      "description": "",
+      "paths": [
+        []
+      ],
+      "custom": {}
+    }
+  }
+}

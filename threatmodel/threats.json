@@ -1,0 +1,32 @@
+{
+  "threats": {
+    "#sqlinjection": {
+      "id": "#sqlinjection",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "SQL injection",
+      "description": "",
+      "custom": {}
+    },
+    "#brute": {
+      "id": "#brute",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "Password Brute Forcing",
+      "description": "",
+      "custom": {}
+    },
+    "#xss": {
+      "id": "#xss",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "#xss#",
+      "description": "",
+      "custom": {}
+    },
+    "#information_disclosure": {
+      "id": "#information_disclosure",
+      "run_id": "3db2f0091a544a8d9cb95daf1594e913",
+      "name": "information disclosure",
+      "description": "",
+      "custom": {}
+    }
+  }
+}
