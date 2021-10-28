@@ -641,7 +641,7 @@ resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_bastion_tf" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## CalcApp:VPC:Bastion To CalcApp:VPC:Bastion:BastionServer
+## CalcApp:VPC:Bastion To CalcApp:VPC:BastionServer
 Network
 
 ```
@@ -706,7 +706,7 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 ## CalcApp:VPC:Bastion
 
-## CalcApp:VPC:Bastion:BastionServer
+## CalcApp:VPC:BastionServer
 
 ## CalcApp:VPC:DB
 
