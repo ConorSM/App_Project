@@ -12,7 +12,7 @@ terraform {
   }
 }
 
-# @component CalcApp (#app)
+
 # @component CalcApp:VPC (#vpc)
 
 # @connects #app to #vpc with HTTP,SSH
@@ -51,8 +51,8 @@ resource "aws_route_table" "cyber94_calc_cmetcalfe_rt_tf" {
   }
 }
 
-# @component CalcApp:VPC:Subnet (#subnet)
-# @connects #vpc to #subnet with Network
+# @component CalcApp:VPC:SubnetApp (#subnet_app)
+# @connects #vpc to #subnet_app with Network
 
 resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_public_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
@@ -170,16 +170,16 @@ resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_public_tf" {
 <<<<<<< HEAD
 
 =======
-# @component CalcApp:Web:Server (#web_server)
+# @component CalcApp:SubnetApp:Server (#app_server)
 
-# @connects #subnet to #web_server with Network
-# @connects #webserver to #subnet with Network
+# @connects #subnet_app to #app_server with Network
+# @connects #app_server to #subnet_app with Network
 
 # @threat Flooding (#flooding)
-# @exposes #web_server to Denial of Service with #flooding
+# @exposes #app_server to Denial of Service with #flooding
 
 # @threat attacker accesses #web via SSH (#sshconnect)
-# @exposes #web_server to attacker with #sshconnect
+# @exposes #app_server to attacker with #sshconnect
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 >>>>>>> 129f42520dc7d428d61397518046897bc096aac6
   ami = "ami-0943382e114f188e8"
@@ -240,8 +240,10 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
   #   ]
   # }
 
-# @component CalcApp:VPC:Bastion (#bastion)
-# @connects #vpc to #bastion with Network
+# @component CalcApp:VPC:SubnetBastion (#subnet_bastion)
+# @connects #vpc to #subnet_bastion with Network
+# @connects #subnet_bastion to #vps with Network
+
 resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_bastion_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
   cidr_block = "10.104.3.0/24"
@@ -339,8 +341,9 @@ resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_bastion_tf" {
   }
 }
 
-# @component CalcApp:VPC:BastionServer (#bastion_server)
+# @component CalcApp:VPC:SubnetBastion:BastionServer (#bastion_server)
 # @connects #bastion to #bastion_server with Network
+# @connects #bastion_server to #bastion with Network
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_bastion" {
   ami = "ami-0943382e114f188e8"
   instance_type = "t2.micro"
@@ -355,7 +358,10 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_bastion" {
     Name = "cyber94_calc_cmetcalfe_server_bastion"
   }
 }
-# @component CalcApp:VPC:DB (#db)
+# @component CalcApp:VPC:SubnetDB (#subnet_db)
+# @connects #vpc to #subnet_db with SQL
+# @connects #subnet_db to #vpc with SQL
+
 resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_db_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
   cidr_block = "10.104.2.0/24"
@@ -463,9 +469,9 @@ resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_db_tf" {
   }
 }
 
-# @component CalcAPP:VPC:DB:DBserver (#dbserver)
-# @connects #db to #dbserver with MySQL
-
+# @component CalcAPP:VPC:SubnetDB:DBserver (#dbserver)
+# @connects #subnet_db to #dbserver with SQL
+# @connects #dbserver to #subnet_db with SQL
 # @exposes #dbserver to Information Disclosure with #sqlinjection
 
 # @threat credentials exposed in plain text (#plain_cred)

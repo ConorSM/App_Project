@@ -186,26 +186,26 @@
     },
     {
       "threat": "#denial_of_service",
-      "component": "#web_server",
+      "component": "#app_server",
       "details": "#flooding",
       "description": "",
       "custom": {},
       "source": {
-        "annotation": "@exposes #web_server to Denial of Service with #flooding",
-        "code": "# @exposes #web_server to Denial of Service with #flooding\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n",
+        "annotation": "@exposes #app_server to Denial of Service with #flooding",
+        "code": "# @exposes #app_server to Denial of Service with #flooding\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
     },
     {
       "threat": "#attacker",
-      "component": "#web_server",
+      "component": "#app_server",
       "details": "#sshconnect",
       "description": "",
       "custom": {},
       "source": {
-        "annotation": "@exposes #web_server to attacker with #sshconnect",
-        "code": "# @exposes #web_server to attacker with #sshconnect\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n",
+        "annotation": "@exposes #app_server to attacker with #sshconnect",
+        "code": "# @exposes #app_server to attacker with #sshconnect\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
@@ -550,56 +550,70 @@
     },
     {
       "source_component": "#vpc",
-      "destination_component": "#subnet",
+      "destination_component": "#subnet_app",
       "direction": "to",
       "details": "Network",
       "description": "",
       "custom": {},
       "source": {
-        "annotation": "@connects #vpc to #subnet with Network",
-        "code": "# @connects #vpc to #subnet with Network\n\nresource \"aws_subnet\" \"cyber94_calc_cmetcalfe_subnet_public_tf\" {\n  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id\n  cidr_block = \"10.104.1.0/24\"\n\n",
+        "annotation": "@connects #vpc to #subnet_app with Network",
+        "code": "# @connects #vpc to #subnet_app with Network\n\nresource \"aws_subnet\" \"cyber94_calc_cmetcalfe_subnet_public_tf\" {\n  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id\n  cidr_block = \"10.104.1.0/24\"\n\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
     },
     {
-      "source_component": "#subnet",
-      "destination_component": "#web_server",
+      "source_component": "#subnet_app",
+      "destination_component": "#app_server",
       "direction": "to",
       "details": "Network",
       "description": "",
       "custom": {},
       "source": {
-        "annotation": "@connects #subnet to #web_server with Network",
-        "code": "# @connects #subnet to #web_server with Network\n\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n",
+        "annotation": "@connects #subnet_app to #app_server with Network",
+        "code": "# @connects #subnet_app to #app_server with Network\n\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
     },
     {
-      "source_component": "#webserver",
-      "destination_component": "#subnet",
+      "source_component": "#app_server",
+      "destination_component": "#subnet_app",
       "direction": "to",
       "details": "Network",
       "description": "",
       "custom": {},
       "source": {
-        "annotation": "@connects #webserver to #subnet with Network",
-        "code": "# @connects #webserver to #subnet with Network\n\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n",
+        "annotation": "@connects #app_server to #subnet_app with Network",
+        "code": "# @connects #app_server to #subnet_app with Network\n\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
     },
     {
       "source_component": "#vpc",
-      "destination_component": "#bastion",
+      "destination_component": "#subnet_bastion",
       "direction": "to",
       "details": "Network",
       "description": "",
       "custom": {},
       "source": {
-        "annotation": "@connects #vpc to #bastion with Network",
-        "code": "# @connects #vpc to #bastion with Network\nresource \"aws_subnet\" \"cyber94_calc_cmetcalfe_subnet_bastion_tf\" {\n  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id\n  cidr_block = \"10.104.3.0/24\"\n\n  tags = {\n",
+        "annotation": "@connects #vpc to #subnet_bastion with Network",
+        "code": "# @connects #vpc to #subnet_bastion with Network\n\nresource \"aws_subnet\" \"cyber94_calc_cmetcalfe_subnet_bastion_tf\" {\n  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id\n  cidr_block = \"10.104.3.0/24\"\n\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#subnet_bastion",
+      "destination_component": "#vps",
+      "direction": "to",
+      "details": "Network",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #subnet_bastion to #vps with Network",
+        "code": "# @connects #subnet_bastion to #vps with Network\n\nresource \"aws_subnet\" \"cyber94_calc_cmetcalfe_subnet_bastion_tf\" {\n  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id\n  cidr_block = \"10.104.3.0/24\"\n\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
@@ -619,15 +633,71 @@
       }
     },
     {
-      "source_component": "#db",
-      "destination_component": "#dbserver",
+      "source_component": "#bastion_server",
+      "destination_component": "#bastion",
       "direction": "to",
-      "details": "MySQL",
+      "details": "Network",
       "description": "",
       "custom": {},
       "source": {
-        "annotation": "@connects #db to #dbserver with MySQL",
-        "code": "# @connects #db to #dbserver with MySQL\n\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n",
+        "annotation": "@connects #bastion_server to #bastion with Network",
+        "code": "# @connects #bastion_server to #bastion with Network\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_bastion\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n  associate_public_ip_address = true\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#vpc",
+      "destination_component": "#subnet_db",
+      "direction": "to",
+      "details": "SQL",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #vpc to #subnet_db with SQL",
+        "code": "# @connects #vpc to #subnet_db with SQL\n\nresource \"aws_subnet\" \"cyber94_calc_cmetcalfe_subnet_db_tf\" {\n  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id\n  cidr_block = \"10.104.2.0/24\"\n\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#subnet_db",
+      "destination_component": "#vpc",
+      "direction": "to",
+      "details": "SQL",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #subnet_db to #vpc with SQL",
+        "code": "# @connects #subnet_db to #vpc with SQL\n\nresource \"aws_subnet\" \"cyber94_calc_cmetcalfe_subnet_db_tf\" {\n  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id\n  cidr_block = \"10.104.2.0/24\"\n\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#subnet_db",
+      "destination_component": "#dbserver",
+      "direction": "to",
+      "details": "SQL",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #subnet_db to #dbserver with SQL",
+        "code": "# @connects #subnet_db to #dbserver with SQL\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "source_component": "#dbserver",
+      "destination_component": "#subnet_db",
+      "direction": "to",
+      "details": "SQL",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@connects #dbserver to #subnet_db with SQL",
+        "code": "# @connects #dbserver to #subnet_db with SQL\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
@@ -635,5 +705,5 @@
   ],
   "reviews": [],
   "tests": [],
-  "run_id": "7beaefe7f3384ac58a881ad9711f543d"
+  "run_id": "cd4a65d9dab1455f99f260d8cb31084e"
 }

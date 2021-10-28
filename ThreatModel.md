@@ -178,11 +178,11 @@ def calculator_get():
 ```
 /home/kali/cyber/projects/calculator_app/app/main.py:1
 
-## Denial of service against CalcApp:Web:Server
+## Denial of service against CalcApp:SubnetApp:Server
 #flooding
 
 ```
-# @exposes #web_server to Denial of Service with #flooding
+# @exposes #app_server to Denial of Service with #flooding
 
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 >>>>>>> 129f42520dc7d428d61397518046897bc096aac6
@@ -192,11 +192,11 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## Attacker against CalcApp:Web:Server
+## Attacker against CalcApp:SubnetApp:Server
 #sshconnect
 
 ```
-# @exposes #web_server to attacker with #sshconnect
+# @exposes #app_server to attacker with #sshconnect
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 >>>>>>> 129f42520dc7d428d61397518046897bc096aac6
   ami = "ami-0943382e114f188e8"
@@ -206,7 +206,7 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## Information disclosure against CalcAPP:VPC:DB:DBserver
+## Information disclosure against CalcAPP:VPC:SubnetDB:DBserver
 #sqlinjection
 
 ```
@@ -220,7 +220,7 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## Information disclosure against CalcAPP:VPC:DB:DBserver
+## Information disclosure against CalcAPP:VPC:SubnetDB:DBserver
 Credentials not hashed
 
 ```
@@ -585,11 +585,11 @@ resource "aws_internet_gateway" "cyber94_calc_cmetcalfe_ig_tf" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## CalcApp:VPC To CalcApp:VPC:Subnet
+## CalcApp:VPC To CalcApp:VPC:SubnetApp
 Network
 
 ```
-# @connects #vpc to #subnet with Network
+# @connects #vpc to #subnet_app with Network
 
 resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_public_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
@@ -599,11 +599,11 @@ resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_public_tf" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## CalcApp:VPC:Subnet To CalcApp:Web:Server
+## CalcApp:VPC:SubnetApp To CalcApp:SubnetApp:Server
 Network
 
 ```
-# @connects #subnet to #web_server with Network
+# @connects #subnet_app to #app_server with Network
 
 
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
@@ -613,11 +613,11 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-##  To CalcApp:VPC:Subnet
+## CalcApp:SubnetApp:Server To CalcApp:VPC:SubnetApp
 Network
 
 ```
-# @connects #webserver to #subnet with Network
+# @connects #app_server to #subnet_app with Network
 
 
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
@@ -627,21 +627,35 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## CalcApp:VPC To CalcApp:VPC:Bastion
+## CalcApp:VPC To CalcApp:VPC:SubnetBastion
 Network
 
 ```
-# @connects #vpc to #bastion with Network
+# @connects #vpc to #subnet_bastion with Network
+
 resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_bastion_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
   cidr_block = "10.104.3.0/24"
 
-  tags = {
 
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## CalcApp:VPC:Bastion To CalcApp:VPC:BastionServer
+## CalcApp:VPC:SubnetBastion To 
+Network
+
+```
+# @connects #subnet_bastion to #vps with Network
+
+resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_bastion_tf" {
+  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
+  cidr_block = "10.104.3.0/24"
+
+
+```
+/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
+
+## CalcApp:VPC:Bastion To CalcApp:VPC:SubnetBastion:BastionServer
 Network
 
 ```
@@ -655,16 +669,72 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_bastion" {
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
 
-## CalcApp:VPC:DB To CalcAPP:VPC:DB:DBserver
-MySQL
+## CalcApp:VPC:SubnetBastion:BastionServer To CalcApp:VPC:Bastion
+Network
 
 ```
-# @connects #db to #dbserver with MySQL
+# @connects #bastion_server to #bastion with Network
+resource "aws_instance" "cyber94_calc_cmetcalfe_server_bastion" {
+  ami = "ami-0943382e114f188e8"
+  instance_type = "t2.micro"
+  key_name = "cyber94-cmetcalfe"
+  associate_public_ip_address = true
 
+```
+/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
+
+## CalcApp:VPC To CalcApp:VPC:SubnetDB
+SQL
+
+```
+# @connects #vpc to #subnet_db with SQL
+
+resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_db_tf" {
+  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
+  cidr_block = "10.104.2.0/24"
+
+
+```
+/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
+
+## CalcApp:VPC:SubnetDB To CalcApp:VPC
+SQL
+
+```
+# @connects #subnet_db to #vpc with SQL
+
+resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_db_tf" {
+  vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
+  cidr_block = "10.104.2.0/24"
+
+
+```
+/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
+
+## CalcApp:VPC:SubnetDB To CalcAPP:VPC:SubnetDB:DBserver
+SQL
+
+```
+# @connects #subnet_db to #dbserver with SQL
 
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
   ami = "ami-0943382e114f188e8"
   instance_type = "t2.micro"
+  key_name = "cyber94-cmetcalfe"
+
+```
+/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
+
+## CalcAPP:VPC:SubnetDB:DBserver To CalcApp:VPC:SubnetDB
+SQL
+
+```
+# @connects #dbserver to #subnet_db with SQL
+
+resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
+  ami = "ami-0943382e114f188e8"
+  instance_type = "t2.micro"
+  key_name = "cyber94-cmetcalfe"
 
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
@@ -684,7 +754,9 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 ## CalcApp:Web:Server:Calculator
 
-## CalcAPP:VPC:DB:DBserver
+## CalcApp:SubnetApp:Server
+
+## CalcAPP:VPC:SubnetDB:DBserver
 
 ## guest
 
@@ -700,15 +772,17 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 ## CalcApp:VPC:ig
 
-## CalcApp:VPC:Subnet
+## CalcApp:VPC:SubnetApp
+
+## CalcApp:VPC:SubnetBastion
 
 ## 
 
 ## CalcApp:VPC:Bastion
 
-## CalcApp:VPC:BastionServer
+## CalcApp:VPC:SubnetBastion:BastionServer
 
-## CalcApp:VPC:DB
+## CalcApp:VPC:SubnetDB
 
 
 # Threats
