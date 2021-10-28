@@ -41,7 +41,7 @@ def verify_token(token):
 # @exposes #index to tampering with #csrf
 # @exposes #calculate to tampering with #csrf
 # @exposes #calculate2 to tampering with #csrf
-# @exposes #calculator to tampering manipulation with #csrf
+# @exposes #calculator to tampering with #csrf
 
 
 @flask_app.route('/')

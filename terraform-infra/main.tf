@@ -26,7 +26,7 @@ resource "aws_vpc" "cyber94_calc_cmetcalfe_vpc_tf" {
   }
 }
 
-# @component CalcApp:VPC:ig (#ig)
+# @component CalcApp:VPC:IG (#ig)
 
 # @connects #vpc to #ig with HTTP
 # @connects #ig to #vpc with HTTP
@@ -51,9 +51,9 @@ resource "aws_route_table" "cyber94_calc_cmetcalfe_rt_tf" {
   }
 }
 
-# @component CalcApp:VPC:SubnetApp (#subnet_app)
-# @connects #vpc to #subnet_app with Network
-
+# @component CalcApp:VPC:IG:SubnetApp (#subnet_app)
+# @connects #ig to #subnet_app with Network
+# @connects #subnet_app to #ig with Network
 resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_public_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
   cidr_block = "10.104.1.0/24"
@@ -68,6 +68,9 @@ resource "aws_route_table_association" "cyber94_calc_cmetcalfe_rt_assoc_tf" {
   route_table_id = aws_route_table.cyber94_calc_cmetcalfe_rt_tf.id
 }
 
+# @component CalcApp:VPC:IG:SubnetApp:NACLapp (#nacl_app)
+# @connects #ig to #nacl_app with Network
+# @connects #nacl_app to #ig with Network
 resource "aws_network_acl" "cyber94_calc_cmetcalfe_nacl_public_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
 
@@ -122,6 +125,10 @@ resource "aws_network_acl" "cyber94_calc_cmetcalfe_nacl_public_tf" {
   }
 }
 
+# @component CalcApp:VPC:IG:SubnetApp:NACLapp:SGapp (#sg_app)
+# @connects #nacl_app to #sg_app with Network
+# @connects #sg_app to #nacl_app with Network
+
 resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_public_tf" {
   name = "cyber94_calc_cmetcalfe_sg_server_public"
 
@@ -170,7 +177,7 @@ resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_public_tf" {
 <<<<<<< HEAD
 
 =======
-# @component CalcApp:SubnetApp:Server (#app_server)
+# @component CalcApp:VPC:IG:SubnetApp:NACLapp:SGapp:Server (#app_server)
 
 # @connects #subnet_app to #app_server with Network
 # @connects #app_server to #subnet_app with Network
@@ -240,9 +247,9 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
   #   ]
   # }
 
-# @component CalcApp:VPC:SubnetBastion (#subnet_bastion)
-# @connects #vpc to #subnet_bastion with Network
-# @connects #subnet_bastion to #vpc with Network
+# @component CalcApp:VPC:IG:SubnetBastion (#subnet_bastion)
+# @connects #ig to #subnet_bastion with Network
+# @connects #subnet_bastion to #ig with Network
 
 resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_bastion_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
@@ -257,6 +264,10 @@ resource "aws_route_table_association" "cyber94_calc_cmetcalfe_rt_assoc_bastion_
   subnet_id = aws_subnet.cyber94_calc_cmetcalfe_subnet_bastion_tf.id
   route_table_id = aws_route_table.cyber94_calc_cmetcalfe_rt_tf.id
 }
+
+# @component CalcApp:VPC:IG:SubnetBastion:NACLbastion(#nacl_bastion)
+# @connects #subnet_bastion to #nacl_bastion with Network
+# @connects #nacl_bastion to #subnet_bastion with Network
 
 resource "aws_network_acl" "cyber94_calc_cmetcalfe_nacl_bastion_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
@@ -303,6 +314,9 @@ resource "aws_network_acl" "cyber94_calc_cmetcalfe_nacl_bastion_tf" {
   }
 }
 
+# @component CalcApp:VPC:IG:SubnetBastion:NACLbastion:SGbastion(#sg_bastion)
+# @connects #nacl_bastion to #sg_bastion with Network
+# @connects #sg_bastion to #nacl_bastion with Network
 resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_bastion_tf" {
   name = "cyber94_calc_cmetcalfe_sg_server_bastion"
 
@@ -340,10 +354,9 @@ resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_bastion_tf" {
     Name = "cyber94_calc_cmetcalfe_sg_server_bastion"
   }
 }
-
-# @component CalcApp:VPC:SubnetBastion:BastionServer (#bastion_server)
-# @connects #subnet_bastion to #bastion_server with Network
-# @connects #bastion_server to #subnet_bastion with Network
+# @component CalcApp:VPC:IG:SubnetBastion:NACLbastion:SGbastion:BastionServer (#bastion_server)
+# @connects #sg_bastion to #bastion_server with Network
+# @connects #bastion_server to #sg_bastion with Network
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_bastion" {
   ami = "ami-0943382e114f188e8"
   instance_type = "t2.micro"
@@ -358,9 +371,9 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_bastion" {
     Name = "cyber94_calc_cmetcalfe_server_bastion"
   }
 }
-# @component CalcApp:VPC:SubnetDB (#subnet_db)
-# @connects #vpc to #subnet_db with SQL
-# @connects #subnet_db to #vpc with SQL
+# @component CalcApp:VPC:IG:SubnetDB (#subnet_db)
+# @connects #ig to #subnet_db with SQL
+# @connects #subnet_db to #ig with SQL
 
 resource "aws_subnet" "cyber94_calc_cmetcalfe_subnet_db_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
@@ -375,6 +388,10 @@ resource "aws_route_table_association" "cyber94_calc_cmetcalfe_rt_assoc_db_tf" {
   subnet_id = aws_subnet.cyber94_calc_cmetcalfe_subnet_db_tf.id
   route_table_id = aws_route_table.cyber94_calc_cmetcalfe_rt_tf.id
 }
+
+# @component CalcApp:VPC:IG:SubnetDB:NACLdb (#nacl_db)
+# @connects #subnet_db to #nacl_db with Network
+# @connects #nacl_db to #subnet_db with Network
 
 resource "aws_network_acl" "cyber94_calc_cmetcalfe_nacl_db_tf" {
   vpc_id = aws_vpc.cyber94_calc_cmetcalfe_vpc_tf.id
@@ -430,7 +447,9 @@ resource "aws_network_acl" "cyber94_calc_cmetcalfe_nacl_db_tf" {
   }
 }
 
-
+# @component CalcApp:VPC:IG:SubnetDB:NACLdb:SGdb (#sg_db)
+# @connects #nacl_db to #sg_db with Network
+# @connects #sg_db to #nacl_db with Network
 resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_db_tf" {
   name = "cyber94_calc_cmetcalfe_sg_server_db"
 
@@ -469,9 +488,11 @@ resource "aws_security_group" "cyber94_calc_cmetcalfe_sg_server_db_tf" {
   }
 }
 
-# @component CalcAPP:VPC:SubnetDB:DBserver (#dbserver)
-# @connects #subnet_db to #dbserver with SQL
-# @connects #dbserver to #subnet_db with SQL
+
+# @component CalcApp:VPC:IG:SubnetDB:NACLdb:SGdb:DBserver (#db_server)
+# @connects #sg_db to #db_server with Network
+# @connects #db_server to #sg_db with Network
+
 # @exposes #dbserver to Information Disclosure with #sqlinjection
 
 # @threat credentials exposed in plain text (#plain_cred)
