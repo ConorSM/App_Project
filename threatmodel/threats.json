@@ -2,64 +2,92 @@
   "threats": {
     "#sqlinjection": {
       "id": "#sqlinjection",
-      "run_id": "ca16f4399b744844bb34ca2299378492",
+      "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0",
       "name": "SQL injection",
       "description": "",
       "custom": {}
     },
     "#brute": {
       "id": "#brute",
-      "run_id": "ca16f4399b744844bb34ca2299378492",
+      "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0",
       "name": "Password Brute Forcing",
       "description": "",
       "custom": {}
     },
     "#xss": {
       "id": "#xss",
-      "run_id": "ca16f4399b744844bb34ca2299378492",
-      "name": "#xss#",
+      "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0",
+      "name": "Cross Site Scripting",
       "description": "",
       "custom": {}
     },
     "#information_disclosure": {
       "id": "#information_disclosure",
-      "run_id": "ca16f4399b744844bb34ca2299378492",
+      "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0",
       "name": "Information Disclosure",
       "description": "",
       "custom": {}
     },
     "#flooding": {
       "id": "#flooding",
-      "run_id": "ca16f4399b744844bb34ca2299378492",
+      "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0",
       "name": "Flooding",
       "description": "",
       "custom": {}
     },
     "#denial_of_service": {
       "id": "#denial_of_service",
-      "run_id": "ca16f4399b744844bb34ca2299378492",
+      "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0",
       "name": "Denial of Service",
       "description": "",
       "custom": {}
     },
     "#buffer": {
       "id": "#buffer",
-      "run_id": "ca16f4399b744844bb34ca2299378492",
+      "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0",
       "name": "Buffer overflow",
       "description": "",
       "custom": {}
     },
     "#buffer_overflow": {
       "id": "#buffer_overflow",
-      "run_id": "ca16f4399b744844bb34ca2299378492",
+      "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0",
       "name": "Buffer Overflow",
       "description": "",
       "custom": {}
     },
     "#buffer_overthrow": {
       "id": "#buffer_overthrow",
-      "run_id": "ca16f4399b744844bb34ca2299378492",
+      "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0",
       "name": "Buffer Overthrow",
+      "description": "",
+      "custom": {}
+    },
+    "#token_theft": {
+      "id": "#token_theft",
+      "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0",
+      "name": "Token Theft",
+      "description": "",
+      "custom": {}
+    },
+    "#tokentheft": {
+      "id": "#tokentheft",
+      "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0",
+      "name": "Token Theft",
+      "description": "",
+      "custom": {}
+    },
+    "#sshconnect": {
+      "id": "#sshconnect",
+      "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0",
+      "name": "attacker accesses #web_server via SSH",
+      "description": "",
+      "custom": {}
+    },
+    "#attacker": {
+      "id": "#attacker",
+      "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0",
+      "name": "attacker",
       "description": "",
       "custom": {}
     }

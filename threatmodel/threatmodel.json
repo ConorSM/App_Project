@@ -1,19 +1,6 @@
 {
   "mitigations": [
     {
-      "control": "#sanitize",
-      "threat": "#xss",
-      "component": "#index",
-      "description": "",
-      "custom": {},
-      "source": {
-        "annotation": "@mitigate #index against #xss# with #sanitize",
-        "code": "# @mitigate #index against #xss# with #sanitize\n\n\n\n@flask_app.route('/')\ndef index_page():\n",
-        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
-        "line": 1
-      }
-    },
-    {
       "control": "#validate",
       "threat": "#sqlinjection",
       "component": "#login",
@@ -41,6 +28,19 @@
     }
   ],
   "exposures": [
+    {
+      "threat": "#xss",
+      "component": "#index",
+      "details": "#xss",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #index to #xss with #xss",
+        "code": "# @exposes #index to #xss with #xss\n\n\n\n@flask_app.route('/')\ndef index_page():\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
     {
       "threat": "#buffer_overflow",
       "component": "#index",
@@ -107,6 +107,19 @@
       }
     },
     {
+      "threat": "#tokentheft",
+      "component": "#calculator",
+      "details": "#tokenforgery",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes #calculator to #tokentheft with #tokenforgery",
+        "code": "# @exposes #calculator to #tokentheft with #tokenforgery\n@flask_app.route('/calculator', methods = ['GET'])\ndef calculator_get():\n    isUserLoggedIn = False\n    if 'token' in request.cookies:\n        isUserLoggedIn = verify_token(request.cookies['token'])\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/app/main.py",
+        "line": 1
+      }
+    },
+    {
       "threat": "#denial_of_service",
       "component": "#web_server",
       "details": "#flooding",
@@ -114,7 +127,20 @@
       "custom": {},
       "source": {
         "annotation": "@exposes #web_server to Denial of Service with #flooding",
-        "code": "# @exposes #web_server to Denial of Service with #flooding\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n",
+        "code": "# @exposes #web_server to Denial of Service with #flooding\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n",
+        "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
+        "line": 1
+      }
+    },
+    {
+      "threat": "#attacker",
+      "component": "#server",
+      "details": "#sshconnect",
+      "description": "",
+      "custom": {},
+      "source": {
+        "annotation": "@exposes server to attacker with #sshconnect",
+        "code": "# @exposes server to attacker with #sshconnect\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
@@ -127,7 +153,7 @@
       "custom": {},
       "source": {
         "annotation": "@exposes #dbserver to Information Disclosure with #sqlinjection",
-        "code": "# @exposes #dbserver to Information Disclosure with #sqlinjection\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n  associate_public_ip_address = true\n",
+        "code": "# @exposes #dbserver to Information Disclosure with #sqlinjection\n\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
@@ -467,7 +493,7 @@
       "custom": {},
       "source": {
         "annotation": "@connects #subnet to #web_server with Network",
-        "code": "# @connects #subnet to #web_server with Network\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n",
+        "code": "# @connects #subnet to #web_server with Network\n\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
@@ -481,7 +507,7 @@
       "custom": {},
       "source": {
         "annotation": "@connects #webserver to #subnet with Network",
-        "code": "# @connects #webserver to #subnet with Network\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n",
+        "code": "# @connects #webserver to #subnet with Network\n\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_public\" {\n>>>>>>> 129f42520dc7d428d61397518046897bc096aac6\n  ami = \"ami-0943382e114f188e8\"\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
@@ -523,7 +549,7 @@
       "custom": {},
       "source": {
         "annotation": "@connects #db to #dbserver with MySQL",
-        "code": "# @connects #db to #dbserver with MySQL\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n  instance_type = \"t2.micro\"\n  key_name = \"cyber94-cmetcalfe\"\n",
+        "code": "# @connects #db to #dbserver with MySQL\n\n\n\nresource \"aws_instance\" \"cyber94_calc_cmetcalfe_server_db\" {\n  ami = \"ami-0943382e114f188e8\"\n",
         "filename": "/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf",
         "line": 1
       }
@@ -531,5 +557,5 @@
   ],
   "reviews": [],
   "tests": [],
-  "run_id": "ca16f4399b744844bb34ca2299378492"
+  "run_id": "5d8190ee5ea94e95b2b9b4f4da757fd0"
 }

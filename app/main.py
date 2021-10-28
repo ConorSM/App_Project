@@ -10,7 +10,7 @@ flask_app = Flask(__name__)
 # @component External:Guest (#guest)
 # @component External:User (#user)
 
-
+# @threat Token Theft (#tokentheft)
 def verify_token(token):
     if token:
         decoded_token = jwt.decode(token, SECRET_KEY, "HS256")
@@ -27,7 +27,7 @@ def verify_token(token):
 
 # @threat Cross Site Scripting (#xss)
 # @control Sanitize Code (#sanitize)
-# @mitigate #index against #xss# with #sanitize
+# @exposes #index to #xss with #xss
 
 # @threat Buffer overflow (#buffer)
 # @exposes #index to Buffer Overflow with #buffer
@@ -113,6 +113,7 @@ def authenticate_users():
 # @connects #calculator to #user with HTTP-GET
 
 # @exposes #calculator to #sqlinjection with #sqlinjection
+# @exposes #calculator to #tokentheft with #tokenforgery
 @flask_app.route('/calculator', methods = ['GET'])
 def calculator_get():
     isUserLoggedIn = False

@@ -10,6 +10,20 @@ A threatspec project.
 
 # Exposures
 
+## Cross site scripting against CalcApp:Web:Server:Index
+#xss
+
+```
+# @exposes #index to #xss with #xss
+
+
+
+@flask_app.route('/')
+def index_page():
+
+```
+/home/kali/cyber/projects/calculator_app/app/main.py:1
+
 ## Buffer overflow against CalcApp:Web:Server:Index
 #buffer
 
@@ -80,11 +94,39 @@ def calculator_get():
 ```
 /home/kali/cyber/projects/calculator_app/app/main.py:1
 
+## Token theft against CalcApp:Web:Server:Calculator
+#tokenforgery
+
+```
+# @exposes #calculator to #tokentheft with #tokenforgery
+@flask_app.route('/calculator', methods = ['GET'])
+def calculator_get():
+    isUserLoggedIn = False
+    if 'token' in request.cookies:
+        isUserLoggedIn = verify_token(request.cookies['token'])
+
+```
+/home/kali/cyber/projects/calculator_app/app/main.py:1
+
 ## Denial of service against CalcApp:Web:Server
 #flooding
 
 ```
 # @exposes #web_server to Denial of Service with #flooding
+
+resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
+>>>>>>> 129f42520dc7d428d61397518046897bc096aac6
+  ami = "ami-0943382e114f188e8"
+  instance_type = "t2.micro"
+
+```
+/home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
+
+## Attacker against server
+#sshconnect
+
+```
+# @exposes server to attacker with #sshconnect
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 >>>>>>> 129f42520dc7d428d61397518046897bc096aac6
   ami = "ami-0943382e114f188e8"
@@ -99,11 +141,11 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 
 ```
 # @exposes #dbserver to Information Disclosure with #sqlinjection
+
+
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
   ami = "ami-0943382e114f188e8"
   instance_type = "t2.micro"
-  key_name = "cyber94-cmetcalfe"
-  associate_public_ip_address = true
 
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
@@ -116,20 +158,6 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 
 # Mitigations
-
-## #xss# against CalcApp:Web:Server:Index mitigated by Sanitize code
-
-
-```
-# @mitigate #index against #xss# with #sanitize
-
-
-
-@flask_app.route('/')
-def index_page():
-
-```
-/home/kali/cyber/projects/calculator_app/app/main.py:1
 
 ## Sql injection against CalcApp:Web:Server:Login mitigated by Validate user input
 
@@ -493,10 +521,10 @@ Network
 ```
 # @connects #subnet to #web_server with Network
 
+
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 >>>>>>> 129f42520dc7d428d61397518046897bc096aac6
   ami = "ami-0943382e114f188e8"
-  instance_type = "t2.micro"
 
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
@@ -507,10 +535,10 @@ Network
 ```
 # @connects #webserver to #subnet with Network
 
+
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_public" {
 >>>>>>> 129f42520dc7d428d61397518046897bc096aac6
   ami = "ami-0943382e114f188e8"
-  instance_type = "t2.micro"
 
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
@@ -549,10 +577,10 @@ MySQL
 ```
 # @connects #db to #dbserver with MySQL
 
+
+
 resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
   ami = "ami-0943382e114f188e8"
-  instance_type = "t2.micro"
-  key_name = "cyber94-cmetcalfe"
 
 ```
 /home/kali/cyber/projects/calculator_app/terraform-infra/main.tf:1
@@ -560,13 +588,15 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 # Components
 
-## CalcApp:Web:Server:Index
-
 ## CalcApp:Web:Server:Login
+
+## CalcApp:Web:Server:Index
 
 ## CalcApp:Web:Server
 
 ## CalcApp:Web:Server:Calculator
+
+## server
 
 ## CalcAPP:VPC:DB:DBserver
 
@@ -601,13 +631,13 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 
 # Threats
 
-## #xss#
-
-
 ## Sql injection
 
 
 ## Password brute forcing
+
+
+## Cross site scripting
 
 
 ## Buffer overflow
@@ -619,13 +649,17 @@ resource "aws_instance" "cyber94_calc_cmetcalfe_server_db" {
 ## Information disclosure
 
 
+## Token theft
+
+
 ## Denial of service
+
+
+## Attacker
 
 
 
 # Controls
-
-## Sanitize code
 
 ## Validate user input
 
